@@ -42,7 +42,7 @@ You type something. The bot roasts you for it. That's it. No feelings spared.
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/the-roast-bot.git
+git clone https://github.com/Katta-Nitish/Roast-Bot-Context-Aware-Conversational-AI.git
 cd the-roast-bot
 ```
 
