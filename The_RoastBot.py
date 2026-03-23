@@ -25,7 +25,7 @@ if user_key:
   API_KEY=user_key
 else:
   API_KEY=st.secrets["GEMINI_API_KEY"]
-# Make sure it says 'v1beta' and includes ':generateContent' at the end
+
 url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={API_KEY}"
 headers={
   "content-type":"application/json"
