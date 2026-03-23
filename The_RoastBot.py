@@ -16,10 +16,17 @@ with col1:
 
 with col2:
     st.title("The Roast Bot")
+with st.sidebar:
+  st.title("Settings")
+  user_key = st.text_input("Use your own Gemini API Key (Optional)", type="password")
+  st.info("Get a key at [Google AI Studio](https://aistudio.google.com/)")
 txt=st.text_input("Enter a statement","")
 
 click=st.button("Let's see..")
-API_KEY=st.secrets["GEMINI_API_KEY"]
+if user_key:
+  API_KEY=user_key
+else:
+  API_KEY=st.secrets["GEMINI_API_KEY"]
 # Make sure it says 'v1beta' and includes ':generateContent' at the end
 url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={API_KEY}"
 headers={
@@ -40,4 +47,7 @@ if click:
     else:
        st.error(f"{response.status_code}")
   except Exception as e:
-    st.error(f"Connection Error: {e}")
+    if not user_key:
+      st.error(f"My free quota is exhausted! Please enter your own API key in the sidebar to continue.")
+    else:
+      st.error(f"An error occurred with your key: {e}")
