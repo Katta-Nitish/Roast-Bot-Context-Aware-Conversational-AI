@@ -1,21 +1,19 @@
 import streamlit as st
-from rembg import remove
 import json
 from PIL import Image
-from io import BytesIO
 import requests
-@st.cache_data
-def bot_logo():
-  req=requests.get("https://www.sanssapien.com/_next/image?url=https%3A%2F%2Fs3.ap-south-1.amazonaws.com%2Fai-app-discovery%2FImg%2F11d0ca46-1cab-4d3d-be3c-030b69bc2099%2Fabb54305-cde0-4896-a458-8e79993dc71b&w=3840&q=80")
-  ig=Image.open(BytesIO(req.content))
-  return remove(ig)
-col1, col2 = st.columns([2,10]) 
-img=bot_logo()
+st.set_page_config(page_title="The Roast Bot", page_icon="🔥")
+col1, col2 = st.columns([2, 5])
 with col1:
-    st.image(img, width=200) # Smaller width to fit nicely
+    try:
+      img=Image.open("logo.png")
+      st.image(img, width=200) # Smaller width to fit nicely
+    except :
+        st.write("🔥")
 
 with col2:
     st.title("The Roast Bot")
+    st.caption("A sarcastic AI that roasts your thoughts.")
 with st.sidebar:
   st.title("Settings")
   user_key = st.text_input("Use your own Gemini API Key (Optional)", type="password")
